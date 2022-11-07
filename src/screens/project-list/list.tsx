@@ -1,22 +1,15 @@
-import { Table } from 'antd'
+import { Table, TableProps } from 'antd'
 import dayjs from 'dayjs'
-import { User } from './search-panel'
-interface Project {
-    id: string
-    name: string
-    personId: string
-    pin: string
-    origanization: string
-    created: string
-}
-interface ListProps {
-    list: Project[]
+import { Project, User } from 'screens/project-list'
+interface ListProps extends TableProps<Project> {
     users: User[]
 }
-export const List = ({ users, list }: ListProps) => {
+export const List = ({ users, ...props }: ListProps) => {
     return (
         <Table
+            rowKey={(record) => record.id}
             pagination={false}
+            showSorterTooltip={false}
             columns={[
                 { title: '名称', dataIndex: 'name', sorter: (a, b) => a.name.localeCompare(b.name) },
                 { title: '部门', dataIndex: 'origanization' },
@@ -33,6 +26,6 @@ export const List = ({ users, list }: ListProps) => {
                     },
                 },
             ]}
-            dataSource={list}></Table>
+            {...props}></Table>
     )
 }

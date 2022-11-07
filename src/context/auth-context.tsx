@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react'
 import * as auth from 'auth-provider'
-import { User } from 'screens/project-list/search-panel'
+import { User } from 'screens/project-list'
 import { http } from 'utils/http'
 import { useMount } from 'utils'
 interface AuthContextType {

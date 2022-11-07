@@ -3,14 +3,18 @@ import { Row } from 'components/lib'
 import { useAuth } from 'context/auth-context'
 import { ProjectListScreen } from 'screens/project-list'
 import logo from 'assets/logo.webp'
-import { Dropdown, Menu, MenuProps } from 'antd'
+import { Button, Dropdown, Menu, MenuProps } from 'antd'
 
 export const AuthenticatedApp = () => {
     const { logout, user } = useAuth()
     const items: MenuProps['items'] = [
         {
             key: 'logout',
-            label: <a onClick={logout}>登出</a>,
+            label: (
+                <Button type="link" onClick={logout}>
+                    登出
+                </Button>
+            ),
         },
     ]
     return (
@@ -23,7 +27,9 @@ export const AuthenticatedApp = () => {
                 </HeaderLeft>
                 <HeaderRight>
                     <Dropdown menu={{ items }}>
-                        <a onClick={(e) => e.preventDefault()}>Hi,{user?.name}</a>
+                        <Button type="link" onClick={(e) => e.preventDefault()}>
+                            Hi,{user?.name}
+                        </Button>
                     </Dropdown>
                 </HeaderRight>
             </PageHeader>

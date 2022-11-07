@@ -46,6 +46,7 @@ export const LongButton = styled(Button)`
     width: 100%;
 `
 export const UnauthenticatedApp = () => {
+    const [error, setError] = useState<Error | null>(null)
     const [isRegister, setIsRegister] = useState(false)
     return (
         <Container>

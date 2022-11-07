@@ -1,13 +1,7 @@
 import { Form, Input, Select } from 'antd'
 import { useEffect, useState } from 'react'
-export interface User {
-    token: string
-    id: string
-    name: string
-    email: string
-    title: string
-    origanization: string
-}
+import { User } from 'screens/project-list'
+
 interface SearchPanelProps {
     users: User[]
     param: {
@@ -41,9 +35,13 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
                             personId: value,
                         })
                     }>
-                    <Select.Option value="">负责人</Select.Option>
+                    <Select.Option key={'负责人'} value="">
+                        负责人
+                    </Select.Option>
                     {users.map((user) => (
-                        <Select.Option value={user.id}>{user.name}</Select.Option>
+                        <Select.Option key={user.id} value={user.id}>
+                            {user.name}
+                        </Select.Option>
                     ))}
                 </Select>
             </Form.Item>
