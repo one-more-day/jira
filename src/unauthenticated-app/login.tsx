@@ -1,10 +1,16 @@
 import { useAuth } from 'context/auth-context'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, message } from 'antd'
 import { LongButton } from 'unauthenticated-app'
 export const LoginSreen = () => {
     const { login } = useAuth()
     const handleSubmit = (values: { username: string; password: string }) => {
         login(values)
+            .then(() => {
+                message.success('登陆成功')
+            })
+            .catch((e) => {
+                message.error(e.message)
+            })
     }
     return (
         <Form onFinish={handleSubmit}>

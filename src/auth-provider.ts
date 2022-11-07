@@ -16,8 +16,8 @@ export const login = async (data: { username: string; password: string }) => {
     })
     if (res.ok) {
         return handleUserResponse(await res.json())
-    }else{
-        return Promise.reject(data)
+    } else {
+        return Promise.reject(await res.json())
     }
 }
 export const register = async (data: { username: string; password: string }) => {
@@ -30,8 +30,8 @@ export const register = async (data: { username: string; password: string }) => 
     })
     if (res.ok) {
         return handleUserResponse(await res.json())
-    }else{
-        return Promise.reject(data)
+    } else {
+        return Promise.reject(await res.json())
     }
 }
 export const logout = async () => window.localStorage.removeItem(localStorageKey)

@@ -9,12 +9,12 @@ import { AppProvider } from 'context'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 loadServer(() => {
     root.render(
-        <React.StrictMode>
-            <AppProvider>
-                <DevTools />
-                <App />
-            </AppProvider>
-        </React.StrictMode>,
+        // <React.StrictMode>
+        <AppProvider>
+            <DevTools />
+            <App />
+        </AppProvider>,
+        // </React.StrictMode>,
     )
 })
 

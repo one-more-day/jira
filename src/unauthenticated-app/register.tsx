@@ -1,4 +1,4 @@
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, message } from 'antd'
 import { useAuth } from 'context/auth-context'
 import { LongButton } from 'unauthenticated-app'
 
@@ -6,6 +6,12 @@ export const RegisterSreen = () => {
     const { register } = useAuth()
     const handleSubmit = (values: { username: string; password: string }) => {
         register(values)
+            .then(() => {
+                message.success('注册成功')
+            })
+            .catch((e) => {
+                message.error(e.message)
+            })
     }
     return (
         <Form onFinish={handleSubmit}>
