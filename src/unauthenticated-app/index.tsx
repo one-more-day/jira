@@ -53,7 +53,7 @@ export const UnauthenticatedApp = () => {
             <Background />
             <ShadowCard>
                 <Title>{isRegister ? 'JIRA注册' : 'JIRA登录'}</Title>
-                {isRegister ? <RegisterSreen/> : <LoginSreen />}
+                {isRegister ? <RegisterSreen /> : <LoginSreen />}
                 <Divider />
                 <a onClick={() => setIsRegister(!isRegister)}>
                     {isRegister ? '已经有账号了?直接登录' : '没有账号?注册新账号'}

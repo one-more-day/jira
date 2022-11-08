@@ -3,6 +3,9 @@ import * as auth from 'auth-provider'
 import { User } from 'screens/project-list'
 import { http } from 'utils/http'
 import { useMount } from 'utils'
+import { useAsync } from 'utils/useAsync'
+import { Loading } from 'components/loading'
+import { message } from 'antd'
 interface AuthContextType {
     user: User | null
     register: (from: AuthForm) => Promise<void>
@@ -26,13 +29,20 @@ const bootstrapUser = async () => {
     return user
 }
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<User | null>(null)
+    const { run, data: user, isLoading, isIdle, setData: setUser, isError, error } = useAsync<User | null>()
     const login = (form: AuthForm) => auth.login(form).then(setUser)
     const register = (form: AuthForm) => auth.register(form).then(setUser)
     const logout = () => auth.logout().then(() => setUser(null))
     useMount(() => {
-        bootstrapUser().then(setUser)
+        run(bootstrapUser())
     })
+    console.log(error)
+    if (isIdle || isLoading) {
+        return <Loading />
+    }
+    if (isError) {
+        message.error(error?.message)
+    }
     return <AuthContext.Provider children={children} value={{ user, login, register, logout }}></AuthContext.Provider>
 }
 export const useAuth = () => {
