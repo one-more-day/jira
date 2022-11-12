@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     useMount(() => {
         run(bootstrapUser())
     })
-    console.log(error)
     if (isIdle || isLoading) {
         return <Loading />
     }
