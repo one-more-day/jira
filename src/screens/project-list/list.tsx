@@ -1,17 +1,36 @@
 import { Table, TableProps } from 'antd'
+import { Pin } from 'components/pin'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 import { Project, User } from 'screens/project-list'
+import { useEditProjct } from './service'
 interface ListProps extends TableProps<Project> {
+    retry: () => void
     users: User[]
 }
-export const List = ({ users, ...props }: ListProps) => {
+export const List = ({ retry, users, ...props }: ListProps) => {
+    const { mutate } = useEditProjct()
     return (
         <Table
             rowKey={(record) => record.id}
             pagination={false}
             showSorterTooltip={false}
             columns={[
+                {
+                    title: <Pin checked={true} disabled={true} />,
+                    render(val, pro) {
+                        return (
+                            <Pin
+                                checked={pro.pin}
+                                onCheckedChange={(pin) => {
+                                    mutate({ id: pro.id, pin }).then(() => {
+                                        retry()
+                                    })
+                                }}
+                            />
+                        )
+                    },
+                },
                 {
                     title: '名称',
                     dataIndex: 'name',

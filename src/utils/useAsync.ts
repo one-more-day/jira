@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export interface State<D> {
     error: Error | null
@@ -17,10 +17,16 @@ export const useAsync = <D>(initialState?: State<D>) => {
     })
     const setData = (data: D) => setState({ data, status: 'success', error: null })
     const setError = (error: Error) => setState({ data: null, status: 'error', error })
+    const retryRef = useRef(() => {})
     //触发异步请求
-    const run = (promise: Promise<D>) => {
+    const run = (promise: Promise<D>, config?: { retry: () => Promise<D> }) => {
         if (!promise || !promise.then) throw new Error('请传入 Promise 类型数据')
         setState({ ...state, status: 'loading' })
+        retryRef.current = () => {
+            if (config?.retry) {
+                run(config.retry(), config)
+            }
+        }
         return promise
             .then((data) => {
                 setData(data)
@@ -39,6 +45,7 @@ export const useAsync = <D>(initialState?: State<D>) => {
         run,
         setData,
         setError,
+        retry: retryRef.current,
         ...state,
     }
 }
