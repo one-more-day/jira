@@ -4,7 +4,7 @@ import { cleanObject, useMount } from 'utils'
 import { useHttp } from 'utils/http'
 import { useAsync } from 'utils/useAsync'
 
-export const useProject = (param: Partial<Project>) => {
+export const useProject = (param?: Partial<Project>) => {
     const client = useHttp()
     const { run, ...result } = useAsync<Project[]>()
     useEffect(() => {

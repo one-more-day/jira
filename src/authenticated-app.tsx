@@ -4,7 +4,10 @@ import { ProjectListScreen } from 'screens/project-list'
 import { PageHeader } from 'components/page-header'
 import { Navigate, Route, Routes } from 'react-router'
 import { ProjectScreen } from 'screens/project'
+import { useState } from 'react'
+import { ProjectModal } from 'screens/project-list/project-modal'
 export const AuthenticatedApp = () => {
+    const [projectModalOpen, setProjectModalopen] = useState(false)
     return (
         <Container>
             <PageHeader />
@@ -15,6 +18,7 @@ export const AuthenticatedApp = () => {
                     <Route index element={<ProjectListScreen />} />
                 </Routes>
             </Main>
+            <ProjectModal projectModalOpen={projectModalOpen} onClose={() => setProjectModalopen(false)} />
         </Container>
     )
 }

@@ -4,6 +4,7 @@ import logo from 'assets/logo.webp'
 import { Button, Dropdown, Menu, MenuProps } from 'antd'
 import { useAuth } from 'context/auth-context'
 import { resetRoute } from 'utils'
+import { ProjectPopover } from './project-popover'
 export const PageHeader = () => {
     const { logout, user } = useAuth()
     const items: MenuProps['items'] = [
@@ -22,8 +23,8 @@ export const PageHeader = () => {
                 <Button type="link" onClick={resetRoute}>
                     <Logo src={logo} />
                 </Button>
-                <h2>项目</h2>
-                <h2>用户</h2>
+                <ProjectPopover />
+                <span>用户</span>
             </HeaderLeft>
             <HeaderRight>
                 <Dropdown menu={{ items }}>

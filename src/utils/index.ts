@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value)
 export const isVoid = (value: unknown) => value === undefined || value === null || value === ''
-export const cleanObject = (object: { [key: string]: unknown }) => {
+export const cleanObject = (object?: { [key: string]: unknown }) => {
     const result = { ...object }
-    Object.keys(object).forEach((key) => {
-        const value = object[key]
+    Object.keys(result).forEach((key) => {
+        const value = result[key]
         if (isVoid(value)) {
             delete result[key]
         }
@@ -39,3 +39,5 @@ export const useDocumentTitle = (title: string, keepUnmount: boolean = true) => 
     }, [title, keepUnmount])
 }
 export const resetRoute = () => (window.location.href = window.location.origin)
+
+export const useMountedRef = () => {}
