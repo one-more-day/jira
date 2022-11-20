@@ -10,7 +10,7 @@ export const AuthenticatedApp = () => {
     const [projectModalOpen, setProjectModalopen] = useState(false)
     return (
         <Container>
-            <PageHeader />
+            <PageHeader setProjectModalOpen={setProjectModalopen} />
             <Main>
                 <Routes>
                     <Route path="/projects" element={<ProjectListScreen />} />
