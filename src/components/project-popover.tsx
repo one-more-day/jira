@@ -1,9 +1,12 @@
 import styled from '@emotion/styled'
 import { Button, Divider, List, Popover, Typography } from 'antd'
+import { useDispatch } from 'react-redux'
+import { projectListActions } from 'screens/project-list/project-lise.slice'
 import { useProject } from 'screens/project-list/service'
 
-export const ProjectPopover = (props: { setProjectModalOpen: (isOpen: boolean) => void }) => {
+export const ProjectPopover = () => {
     const { data: projects, isLoading } = useProject()
+    const dispatch = useDispatch()
     const pinnedProject = projects?.filter((project) => project.pin)
     const content = (
         <ContentContainer>
@@ -16,7 +19,7 @@ export const ProjectPopover = (props: { setProjectModalOpen: (isOpen: boolean) =
                 ))}
             </List>
             <Divider />
-            <Button style={{ padding: 0 }} type="link" onClick={() => props.setProjectModalOpen(true)}>
+            <Button style={{ padding: 0 }} type="link" onClick={() => dispatch(projectListActions.openProjectModal())}>
                 创建项目
             </Button>
         </ContentContainer>

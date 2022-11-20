@@ -1,9 +1,14 @@
 import { Drawer } from 'antd'
-interface Iprops {
-    projectModalOpen: boolean
-    onClose: () => void
-}
-export const ProjectModal = (props: Iprops) => {
-    const { projectModalOpen, onClose } = props
-    return <Drawer open={projectModalOpen} width={'100%'} onClose={onClose}></Drawer>
+import { useDispatch, useSelector } from 'react-redux'
+import { projectListActions, selectProjectModalOpen } from './project-lise.slice'
+
+export const ProjectModal = () => {
+    const dispatch = useDispatch()
+    const projectModalOpen = useSelector(selectProjectModalOpen)
+    return (
+        <Drawer
+            open={projectModalOpen}
+            width={'100%'}
+            onClose={() => dispatch(projectListActions.closeProjectModal())}></Drawer>
+    )
 }

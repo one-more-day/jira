@@ -6,6 +6,7 @@
     "@craco/craco": "^6.4.5",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -21,6 +22,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.2",
+    "react-redux": "^8.0.5",
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
@@ -28,7 +30,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "craco start --port 3003",
+    "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
@@ -54,6 +56,7 @@
   },
   "devDependencies": {
     "@types/qs": "^6.9.7",
+    "@types/react-redux": "^7.1.24",
     "@welldone-software/why-did-you-render": "^7.0.1",
     "json-server": "^0.17.1"
   },

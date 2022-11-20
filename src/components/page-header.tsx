@@ -5,7 +5,7 @@ import { Button, Dropdown, Menu, MenuProps } from 'antd'
 import { useAuth } from 'context/auth-context'
 import { resetRoute } from 'utils'
 import { ProjectPopover } from './project-popover'
-export const PageHeader = ({ setProjectModalOpen }: { setProjectModalOpen: (isOpen: boolean) => void }) => {
+export const PageHeader = () => {
     const { logout, user } = useAuth()
     const items: MenuProps['items'] = [
         {
@@ -23,7 +23,7 @@ export const PageHeader = ({ setProjectModalOpen }: { setProjectModalOpen: (isOp
                 <Button type="link" onClick={resetRoute}>
                     <Logo src={logo} />
                 </Button>
-                <ProjectPopover setProjectModalOpen={setProjectModalOpen} />
+                <ProjectPopover />
                 <span>用户</span>
             </HeaderLeft>
             <HeaderRight>

@@ -7,10 +7,9 @@ import { ProjectScreen } from 'screens/project'
 import { useState } from 'react'
 import { ProjectModal } from 'screens/project-list/project-modal'
 export const AuthenticatedApp = () => {
-    const [projectModalOpen, setProjectModalopen] = useState(false)
     return (
         <Container>
-            <PageHeader setProjectModalOpen={setProjectModalopen} />
+            <PageHeader />
             <Main>
                 <Routes>
                     <Route path="/projects" element={<ProjectListScreen />} />
@@ -18,7 +17,7 @@ export const AuthenticatedApp = () => {
                     <Route index element={<ProjectListScreen />} />
                 </Routes>
             </Main>
-            <ProjectModal projectModalOpen={projectModalOpen} onClose={() => setProjectModalopen(false)} />
+            <ProjectModal />
         </Container>
     )
 }
